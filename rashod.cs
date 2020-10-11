@@ -25,7 +25,7 @@ namespace sqlShop
                         transaction)
                             )
                     {
-                        MessageBox.Show(command.CommandText);
+                        //MessageBox.Show(command.CommandText);
                         command.ExecuteNonQuery();
                         transaction.Commit();
                     }
@@ -48,6 +48,7 @@ namespace sqlShop
                             command.ExecuteNonQuery();
                             transaction.Commit();
                         }
+                        
                         catch (Exception ex) { MessageBox.Show(ex.Message, "SQL Error"); }
                     }
                 }
@@ -68,7 +69,7 @@ namespace sqlShop
         {
             dataGridView1.DataSource = Services.GetTable_Rashod();
             listBox1.Items.Clear();
-            listBox1.Items.AddRange(Services.GetArrayOfProducts());
+            listBox1.Items.AddRange(Services.ArrayOfProducts);
         }
     }
 }

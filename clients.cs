@@ -46,6 +46,7 @@ namespace sqlShop
                             command.ExecuteNonQuery();
                             transaction.Commit();
                         }
+                        catch (FbException ex1) { MessageBox.Show(ex1.Message, "FB SQL Error"); }
                         catch (Exception ex) { MessageBox.Show(ex.Message, "SQL Error"); }
                     }
                 }

@@ -1,8 +1,6 @@
 ﻿using FirebirdSql.Data.FirebirdClient;
 using System;
 using System.Windows.Forms;
-using Dapper;
-using System.Linq;
 
 
 namespace sqlShop
@@ -27,7 +25,7 @@ namespace sqlShop
                         transaction)
                             )
                     {
-                        MessageBox.Show(command.CommandText);
+                        //MessageBox.Show(command.CommandText);
                         command.ExecuteNonQuery();
                         transaction.Commit();
                     }
@@ -70,7 +68,7 @@ namespace sqlShop
         {
             dataGridView1.DataSource = Services.GetTable_Prihod();
             listBox1.Items.Clear();
-            listBox1.Items.AddRange(Services.GetArrayOfProducts());
+            listBox1.Items.AddRange(Services.ArrayOfProducts);
         }
     }
 }

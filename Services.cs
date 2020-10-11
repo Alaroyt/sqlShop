@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Threading.Tasks;
+﻿using Dapper;
 using FirebirdSql.Data.FirebirdClient;
-using FirebirdSql.Data;
+using System;
 using System.Data;
-using Dapper;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace sqlShop
-{
+{ 
+    /// <summary>
+    /// Средства работы с БД
+    /// </summary>
     public static class Services
     {
         public static FbConnectionStringBuilder connection_string = new FbConnectionStringBuilder
@@ -40,7 +39,10 @@ namespace sqlShop
             }
 
         }
-
+        /// <summary>
+        /// Возвращает таблицу товаров
+        /// </summary>
+        /// <returns></returns>
         internal static DataTable GetTable_Tovary()
         {
             FbDataAdapter adapter = new FbDataAdapter("select * from tovary", GetFbConnection());
@@ -50,6 +52,10 @@ namespace sqlShop
 
             return table;
         }
+        /// <summary>
+        /// Возвращает таблицу клиентов
+        /// </summary>
+        /// <returns></returns>
         internal static DataTable GetTable_Clients()
         {
             FbDataAdapter adapter = new FbDataAdapter("select * from pokupat order by npok", GetFbConnection());
@@ -59,6 +65,10 @@ namespace sqlShop
 
             return table;
         }
+        /// <summary>
+        /// Возвращает таблицу расходов
+        /// </summary>
+        /// <returns></returns>
         internal static DataTable GetTable_Rashod()
         {
             FbDataAdapter adapter = new FbDataAdapter("select * from rashod order by nras", GetFbConnection());
@@ -69,7 +79,7 @@ namespace sqlShop
             return table;
         }
         /// <summary>
-        /// Возвращает таблицу прихода
+        /// Возвращает таблицу приходов 
         /// </summary>
         /// <returns></returns>
         internal static DataTable GetTable_Prihod()
@@ -85,9 +95,6 @@ namespace sqlShop
         /// Возвращает массив всеизвестных товаров с таблицы tovary
         /// </summary>
         /// <returns></returns>
-        internal static string[] GetArrayOfProducts()
-        {
-            return Services.GetFbConnection().Query<String>("select tovar from tovary").ToArray();
-        }
+        internal static string[] ArrayOfProducts => Services.GetFbConnection().Query<String>("select tovar from tovary").ToArray();
     }
 }
