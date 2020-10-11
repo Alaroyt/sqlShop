@@ -20,7 +20,7 @@ namespace sqlShop
                 using (var transaction = connection.BeginTransaction())
                 {
                     using (var command = new FbCommand("insert into rashod(nras,tovar,dataras,kolvo,npok) values(" +
-                        textBox1.Text + ",'" + listBox1.SelectedItem + "','" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "', " + textBox2.Text + "," + textBox3.Text + ");",
+                        Services.GetGetCurrentIdfromRashod() + ",'" + listBox1.SelectedItem + "','" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "', " + textBox2.Text + "," + textBox3.Text + ");",
                         connection,
                         transaction)
                             )

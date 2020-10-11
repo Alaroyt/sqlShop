@@ -20,7 +20,7 @@ namespace sqlShop
                 using (var transaction = connection.BeginTransaction())
                 {
                     using (var command = new FbCommand("insert into prihod(npr,tovar,data_pr,kolvo) values(" +
-                        textBox1.Text + ",'" + listBox1.SelectedItem + "','" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "', " + textBox2.Text + ");",
+                        Services.GetGetCurrentIdfromPrihod() + ",'" + listBox1.SelectedItem + "','" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "', " + textBox2.Text + ");",
                         connection,
                         transaction)
                             )

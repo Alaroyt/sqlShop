@@ -19,7 +19,7 @@ namespace sqlShop
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    using (var command = new FbCommand("insert into pokupat(npok,fio,tel) values ("+textBox1.Text+",'"+textBox2.Text+"',"+textBox3.Text+");",
+                    using (var command = new FbCommand("insert into pokupat(npok,fio,tel) values (" + Services.GetGetCurrentIdfromClients() + ",'" + textBox2.Text + "'," + textBox3.Text + ");",
                         connection,
                         transaction)
                             )

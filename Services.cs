@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 namespace sqlShop
-{ 
+{
     /// <summary>
     /// Средства работы с БД
     /// </summary>
@@ -96,5 +96,28 @@ namespace sqlShop
         /// </summary>
         /// <returns></returns>
         internal static string[] ArrayOfProducts => Services.GetFbConnection().Query<String>("select tovar from tovary").ToArray();
+
+        #region Вычисление свободного айди для таблиц
+        public static int GetGetCurrentIdfromPrihod()
+        {
+            var mas = Services.GetFbConnection().Query<String>("select npr from prihod order by npr").ToArray();
+            if (mas.Length == 0) return 1;
+            return Convert.ToInt32(mas.Last()) + 1;
+        }
+
+        public static int GetGetCurrentIdfromRashod()
+        {
+            var mas = Services.GetFbConnection().Query<String>("select nras from rashod order by nras").ToArray();
+            if (mas.Length == 0) return 1;
+            return Convert.ToInt32(mas.Last()) + 1;
+        }
+
+        public static int GetGetCurrentIdfromClients()
+        {
+            var mas = Services.GetFbConnection().Query<String>("select npok from pokupat order by npok").ToArray();
+            if (mas.Length == 0) return 1;
+            return Convert.ToInt32(mas.Last()) + 1;
+        }
+        #endregion
     }
 }
