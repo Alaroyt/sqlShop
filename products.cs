@@ -28,6 +28,8 @@ namespace sqlShop
                 }
             }
             dataGridView1.DataSource = Services.GetTable_Tovary();
+            listBox1.Items.Clear();
+            listBox1.Items.AddRange(Services.ArrayOfProducts);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -37,7 +39,7 @@ namespace sqlShop
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    using (var command = new FbCommand("Delete from tovary where tovar = '" + textBox4.Text + "'", connection, transaction))
+                    using (var command = new FbCommand("Delete from tovary where tovar = '" + listBox1.SelectedItem + "'", connection, transaction))
                     {
                         try
                         {
@@ -49,6 +51,8 @@ namespace sqlShop
                 }
             }
             dataGridView1.DataSource = Services.GetTable_Tovary();
+            listBox1.Items.Clear();
+            listBox1.Items.AddRange(Services.ArrayOfProducts);
         }
 
         private void products_FormClosing(object sender, FormClosingEventArgs e)
@@ -63,6 +67,8 @@ namespace sqlShop
         private void products_VisibleChanged(object sender, EventArgs e)
         {
             dataGridView1.DataSource = Services.GetTable_Tovary();
+            listBox1.Items.Clear();
+            listBox1.Items.AddRange(Services.ArrayOfProducts);
         }
     }
 }
