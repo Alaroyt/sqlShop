@@ -14,45 +14,62 @@ namespace sqlShop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var connection = new FbConnection(Services.connection_string.ToString()))
+            try
             {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
-                {
-                    using (var command = new FbCommand("insert into tovary(tovar,edizm,zena) values ('" + textBox1.Text.ToLower() + "','" + textBox2.Text
-                    + "'," + textBox3.Text + ");", connection, transaction))
-                    {
-                        command.ExecuteNonQuery();
-                        transaction.Commit();
-                    }
-                }
-            }
-            dataGridView1.DataSource = Services.GetTable_Tovary();
-            listBox1.Items.Clear();
-            listBox1.Items.AddRange(Services.ArrayOfProducts);
-        }
+                if (textBox1.Text == "" | textBox2.Text == "" | textBox3.Text == "") throw new Exception("Заполните все поля");
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (var connection = new FbConnection(Services.connection_string.ToString()))
-            {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
                 {
-                    using (var command = new FbCommand("Delete from tovary where tovar = '" + listBox1.SelectedItem + "'", connection, transaction))
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
                     {
-                        try
+                        using (var command = new FbCommand("insert into tovary(tovar,edizm,zena) values ('" + textBox1.Text.ToLower() + "','" + textBox2.Text
+                        + "'," + textBox3.Text + ");", connection, transaction))
                         {
                             command.ExecuteNonQuery();
                             transaction.Commit();
                         }
-                        catch (Exception ex) { MessageBox.Show(ex.Message, "SQL Error"); }
                     }
                 }
+                dataGridView1.DataSource = Services.GetTable_Tovary();
+                listBox1.Items.Clear();
+                listBox1.Items.AddRange(Services.ArrayOfProducts);
             }
-            dataGridView1.DataSource = Services.GetTable_Tovary();
-            listBox1.Items.Clear();
-            listBox1.Items.AddRange(Services.ArrayOfProducts);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listBox1.SelectedItem == null) throw new Exception("Выберите товар");
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        using (var command = new FbCommand("Delete from tovary where tovar = '" + listBox1.SelectedItem + "'", connection, transaction))
+                        {
+                            try
+                            {
+                                command.ExecuteNonQuery();
+                                transaction.Commit();
+                            }
+                            catch (Exception ex) { MessageBox.Show(ex.Message, "SQL Error"); }
+                        }
+                    }
+                }
+                dataGridView1.DataSource = Services.GetTable_Tovary();
+                listBox1.Items.Clear();
+                listBox1.Items.AddRange(Services.ArrayOfProducts);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message); ;
+            }
         }
 
         private void products_FormClosing(object sender, FormClosingEventArgs e)

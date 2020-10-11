@@ -14,45 +14,62 @@ namespace sqlShop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var connection = new FbConnection(Services.connection_string.ToString()))
+            try
             {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
-                {
-                    using (var command = new FbCommand("insert into prihod(npr,tovar,data_pr,kolvo) values(" +
-                        Services.GetGetCurrentIdfromPrihod() + ",'" + listBox1.SelectedItem + "','" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "', " + textBox2.Text + ");",
-                        connection,
-                        transaction)
-                            )
-                    {
-                        //MessageBox.Show(command.CommandText);
-                        command.ExecuteNonQuery();
-                        transaction.Commit();
-                    }
-                }
-            }
-            dataGridView1.DataSource = Services.GetTable_Prihod();
-        }
+                if (textBox2.Text == "" | listBox1.SelectedItem == null) throw new Exception("Заполните поля");
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (var connection = new FbConnection(Services.connection_string.ToString()))
-            {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
                 {
-                    using (var command = new FbCommand("Delete from prihod where npr = " + textBox4.Text, connection, transaction))
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
                     {
-                        try
+                        using (var command = new FbCommand("insert into prihod(npr,tovar,data_pr,kolvo) values(" +
+                            Services.GetGetCurrentIdfromPrihod() + ",'" + listBox1.SelectedItem + "','" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "', " + textBox2.Text + ");",
+                            connection,
+                            transaction)
+                                )
                         {
                             command.ExecuteNonQuery();
                             transaction.Commit();
                         }
-                        catch (Exception ex) { MessageBox.Show(ex.Message, "SQL Error"); }
                     }
                 }
+                dataGridView1.DataSource = Services.GetTable_Prihod();
             }
-            dataGridView1.DataSource = Services.GetTable_Prihod();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox4.Text == "") throw new Exception("Заполните поля");
+
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        using (var command = new FbCommand("Delete from prihod where npr = " + textBox4.Text, connection, transaction))
+                        {
+                            try
+                            {
+                                command.ExecuteNonQuery();
+                                transaction.Commit();
+                            }
+                            catch (Exception ex) { MessageBox.Show(ex.Message, "SQL Error"); }
+                        }
+                    }
+                }
+                dataGridView1.DataSource = Services.GetTable_Prihod();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void prihod_FormClosing(object sender, FormClosingEventArgs e)
