@@ -85,7 +85,7 @@ namespace sqlShop
         {
             dataGridView1.DataSource = Services.GetTable_Rashod();
             listBox1.Items.Clear();
-            listBox1.Items.AddRange(Services.ArrayOfProducts);
+            listBox1.Items.AddRange(Services.GetArrayOfProducts());
         }
     }
 }

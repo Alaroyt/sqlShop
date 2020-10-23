@@ -24,7 +24,10 @@ namespace sqlShop
         };
         static FbConnection fb;
 
-        public static FbConnection GetFbConnection() => fb;
+        public static FbConnection GetFbConnection()
+        {
+            return fb;
+        }
 
         public static void openConn()
         {
@@ -91,11 +94,32 @@ namespace sqlShop
 
             return table;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlCommand"></param>
+        /// <returns></returns>
+        internal static DataTable GetTableBySqlCommand(string sqlCommand)
+        {
+            FbDataAdapter adapter = new FbDataAdapter(sqlCommand, GetFbConnection());
+            var table = new DataTable();
+            try
+            {
+                adapter.Fill(table);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            return table;
+        }
+
         /// <summary>
         /// Возвращает массив всеизвестных товаров с таблицы tovary
         /// </summary>
         /// <returns></returns>
-        internal static string[] ArrayOfProducts => Services.GetFbConnection().Query<String>("select tovar from tovary").ToArray();
+        internal static string[] GetArrayOfProducts()
+        {
+            return Services.GetFbConnection().Query<String>("select tovar from tovary").ToArray();
+        }
 
         #region Вычисление свободного айди для таблиц
         public static int GetGetCurrentIdfromPrihod()

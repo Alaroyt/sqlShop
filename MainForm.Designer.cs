@@ -42,9 +42,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -58,6 +59,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
@@ -204,16 +206,6 @@
             this.panel4.Size = new System.Drawing.Size(984, 150);
             this.panel4.TabIndex = 8;
             // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label4);
-            this.panel5.Controls.Add(this.dataGridView4);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 499);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(984, 150);
-            this.panel5.TabIndex = 9;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -225,6 +217,16 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Приходы";
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.dataGridView4);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 499);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(984, 150);
+            this.panel5.TabIndex = 9;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -235,6 +237,16 @@
             this.label4.Size = new System.Drawing.Size(51, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Расходы";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(709, 11);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(66, 23);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Методы";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // MainForm
             // 
@@ -254,7 +266,6 @@
             this.Name = "MainForm";
             this.Text = "BD Shop";
             this.Activated += new System.EventHandler(this.MainForm_Activated);
-            this.Enter += new System.EventHandler(this.MainForm_Enter);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -291,6 +302,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

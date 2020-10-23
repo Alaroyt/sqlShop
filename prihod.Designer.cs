@@ -205,7 +205,6 @@
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "prihod";
             this.Text = "prihod";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.prihod_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.prihod_VisibleChanged);
             this.panel1.ResumeLayout(false);

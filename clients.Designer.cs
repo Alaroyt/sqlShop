@@ -194,7 +194,6 @@
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "clients";
             this.Text = "clients";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.clients_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.clients_VisibleChanged);
             this.panel1.ResumeLayout(false);

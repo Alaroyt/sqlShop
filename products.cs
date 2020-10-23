@@ -33,7 +33,7 @@ namespace sqlShop
                 }
                 dataGridView1.DataSource = Services.GetTable_Tovary();
                 listBox1.Items.Clear();
-                listBox1.Items.AddRange(Services.ArrayOfProducts);
+                listBox1.Items.AddRange(Services.GetArrayOfProducts());
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace sqlShop
                 }
                 dataGridView1.DataSource = Services.GetTable_Tovary();
                 listBox1.Items.Clear();
-                listBox1.Items.AddRange(Services.ArrayOfProducts);
+                listBox1.Items.AddRange(Services.GetArrayOfProducts());
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@ namespace sqlShop
         {
             dataGridView1.DataSource = Services.GetTable_Tovary();
             listBox1.Items.Clear();
-            listBox1.Items.AddRange(Services.ArrayOfProducts);
+            listBox1.Items.AddRange(Services.GetArrayOfProducts());
         }
     }
 }
