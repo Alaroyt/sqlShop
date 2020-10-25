@@ -47,23 +47,23 @@ namespace sqlShop
             try
             {
                 if (textBox4.Text == "") throw new Exception("Заполните поля");
-                    using (var connection = new FbConnection(Services.connection_string.ToString()))
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
                     {
-                        connection.Open();
-                        using (var transaction = connection.BeginTransaction())
+                        using (var command = new FbCommand("Delete from rashod where nras = " + textBox4.Text, connection, transaction))
                         {
-                            using (var command = new FbCommand("Delete from rashod where nras = " + textBox4.Text, connection, transaction))
+                            try
                             {
-                                try
-                                {
-                                    command.ExecuteNonQuery();
-                                    transaction.Commit();
-                                }
-
-                                catch (Exception ex) { MessageBox.Show(ex.Message, "SQL Error"); }
+                                command.ExecuteNonQuery();
+                                transaction.Commit();
                             }
+
+                            catch (Exception ex) { MessageBox.Show(ex.Message, "SQL Error"); }
                         }
                     }
+                }
                 dataGridView1.DataSource = Services.GetTable_Rashod();
             }
             catch (Exception ex)
@@ -86,6 +86,33 @@ namespace sqlShop
             dataGridView1.DataSource = Services.GetTable_Rashod();
             listBox1.Items.Clear();
             listBox1.Items.AddRange(Services.GetArrayOfProducts());
+            listBox2.Items.Clear();
+            listBox2.Items.AddRange(Services.GetArrayOfProducts());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (textBox4.Text == "") throw new Exception("Заполните поля");
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        using (var command = new FbCommand("update rashod set tovar = '" + listBox2.SelectedItem + "', dataras = '" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "', kolvo = " + textBox6.Text + ", npok = " + textBox5.Text + " where nras =" + textBox1.Text, connection, transaction))
+                        {
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
+                    }
+                }
+                dataGridView1.DataSource = Services.GetTable_Rashod();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

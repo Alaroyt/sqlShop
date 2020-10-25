@@ -65,6 +65,8 @@ namespace sqlShop
                 dataGridView1.DataSource = Services.GetTable_Tovary();
                 listBox1.Items.Clear();
                 listBox1.Items.AddRange(Services.GetArrayOfProducts());
+                listBox2.Items.Clear();
+                listBox2.Items.AddRange(Services.GetArrayOfProducts());
             }
             catch (Exception ex)
             {
@@ -86,6 +88,33 @@ namespace sqlShop
             dataGridView1.DataSource = Services.GetTable_Tovary();
             listBox1.Items.Clear();
             listBox1.Items.AddRange(Services.GetArrayOfProducts());
+            listBox2.Items.Clear();
+            listBox2.Items.AddRange(Services.GetArrayOfProducts());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (listBox1.SelectedItem == null) throw new Exception("Выберите товар");
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        using (var command = new FbCommand("update tovary set edizm = '"+textBox5.Text+"', zena = "+textBox4.Text+" where tovar = '"+listBox2.SelectedItem+"'", connection, transaction))
+                        {
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
+                    }
+                }
+                dataGridView1.DataSource = Services.GetTable_Tovary();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message); ;
+            }
         }
     }
 }

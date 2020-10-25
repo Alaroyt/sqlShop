@@ -86,6 +86,35 @@ namespace sqlShop
             dataGridView1.DataSource = Services.GetTable_Prihod();
             listBox1.Items.Clear();
             listBox1.Items.AddRange(Services.GetArrayOfProducts());
+            listBox2.Items.Clear();
+            listBox2.Items.AddRange(Services.GetArrayOfProducts());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (textBox4.Text == "") throw new Exception("Заполните поля");
+
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        using (var command = new FbCommand("update  prihod set  tovar = '" + listBox2.SelectedItem + "', data_pr = '" + dateTimePicker2.Value.ToString("dd.MM.yyyy") + "', kolvo = " + textBox1.Text + " where npr = " + textBox3.Text, connection, transaction))
+                        {
+
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
+                    }
+                }
+                dataGridView1.DataSource = Services.GetTable_Prihod();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

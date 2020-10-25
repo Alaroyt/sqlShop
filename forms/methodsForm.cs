@@ -87,5 +87,10 @@ namespace sqlShop
             if (radioButton12.Checked)
                 dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from rashod where rashod.dataras = '" + dateTimePicker1.Value.ToString("dd.MM.yyyy") + "'");
         }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

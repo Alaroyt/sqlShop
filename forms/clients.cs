@@ -84,5 +84,31 @@ namespace sqlShop
         {
             dataGridView1.DataSource = Services.GetTable_Clients();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (textBox4.Text == "") throw new Exception("Заполните поля");
+
+                using (var connection = new FbConnection(Services.connection_string.ToString()))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        using (var command = new FbCommand("update  pokupat set  fio = '" + textBox6.Text + "', tel = " + textBox5.Text + " where npok = " + textBox1.Text, connection, transaction))
+                        {
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
+                    }
+                }
+                dataGridView1.DataSource = Services.GetTable_Clients();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
