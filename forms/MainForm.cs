@@ -41,10 +41,11 @@ namespace sqlShop
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Services.GetTable_Tovary();
-            dataGridView2.DataSource = Services.GetTable_Clients();
-            dataGridView3.DataSource = Services.GetTable_Prihod();
-            dataGridView4.DataSource = Services.GetTable_Rashod();
+            
+            dataGridView1.DataSource = Services.GetTableBySqlCommand("select* from tovary");
+            dataGridView2.DataSource = Services.GetTableBySqlCommand("select * from pokupat order by npok");
+            dataGridView3.DataSource = Services.GetTableBySqlCommand("select * from prihod order by npr");
+            dataGridView4.DataSource = Services.GetTableBySqlCommand("select * from rashod order by nras");
         }
         methods methods = new methods();
         private void button5_Click(object sender, EventArgs e)

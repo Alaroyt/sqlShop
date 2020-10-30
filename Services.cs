@@ -42,58 +42,6 @@ namespace sqlShop
             }
 
         }
-        /// <summary>
-        /// Возвращает таблицу товаров
-        /// </summary>
-        /// <returns></returns>
-        internal static DataTable GetTable_Tovary()
-        {
-            FbDataAdapter adapter = new FbDataAdapter("select * from tovary", GetFbConnection());
-            var table = new DataTable();
-
-            adapter.Fill(table);
-
-            return table;
-        }
-        /// <summary>
-        /// Возвращает таблицу клиентов
-        /// </summary>
-        /// <returns></returns>
-        internal static DataTable GetTable_Clients()
-        {
-            FbDataAdapter adapter = new FbDataAdapter("select * from pokupat order by npok", GetFbConnection());
-            var table = new DataTable();
-
-            adapter.Fill(table);
-
-            return table;
-        }
-        /// <summary>
-        /// Возвращает таблицу расходов
-        /// </summary>
-        /// <returns></returns>
-        internal static DataTable GetTable_Rashod()
-        {
-            FbDataAdapter adapter = new FbDataAdapter("select * from rashod order by nras", GetFbConnection());
-            var table = new DataTable();
-
-            adapter.Fill(table);
-
-            return table;
-        }
-        /// <summary>
-        /// Возвращает таблицу приходов 
-        /// </summary>
-        /// <returns></returns>
-        internal static DataTable GetTable_Prihod()
-        {
-            FbDataAdapter adapter = new FbDataAdapter("select * from prihod order by npr", GetFbConnection());
-            var table = new DataTable();
-
-            adapter.Fill(table);
-
-            return table;
-        }
 
         /// <summary>
         /// 

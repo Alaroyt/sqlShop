@@ -34,7 +34,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Prihod();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from prihod order by npr");
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Prihod();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from prihod order by npr");
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace sqlShop
 
         private void prihod_VisibleChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Services.GetTable_Prihod();
+            dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from prihod order by npr");
             listBox1.Items.Clear();
             listBox1.Items.AddRange(Services.GetArrayOfProducts());
             listBox2.Items.Clear();
@@ -109,7 +109,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Prihod();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from prihod order by npr");
             }
             catch (Exception ex)
             {

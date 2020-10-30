@@ -31,7 +31,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Tovary();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from tovary");
                 listBox1.Items.Clear();
                 listBox1.Items.AddRange(Services.GetArrayOfProducts());
             }
@@ -62,7 +62,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Tovary();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from tovary");
                 listBox1.Items.Clear();
                 listBox1.Items.AddRange(Services.GetArrayOfProducts());
                 listBox2.Items.Clear();
@@ -85,7 +85,7 @@ namespace sqlShop
 
         private void products_VisibleChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Services.GetTable_Tovary();
+            dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from tovary");
             listBox1.Items.Clear();
             listBox1.Items.AddRange(Services.GetArrayOfProducts());
             listBox2.Items.Clear();
@@ -109,7 +109,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Tovary();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from tovary");
             }
             catch (Exception ex)
             {

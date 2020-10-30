@@ -33,7 +33,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Clients();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from pokupat order by npok");
             }
             catch (Exception ex)
             {
@@ -63,7 +63,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Clients();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from pokupat order by npok");
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace sqlShop
 
         private void clients_VisibleChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Services.GetTable_Clients();
+            dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from pokupat order by npok");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -103,7 +103,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Clients();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from pokupat order by npok");
             }
             catch (Exception ex)
             {

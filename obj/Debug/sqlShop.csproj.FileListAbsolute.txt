@@ -18,3 +18,4 @@ C:\Users\cd\source\repos\sqlShop\bin\Debug\Dapper.pdb
 C:\Users\cd\source\repos\sqlShop\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
 C:\Users\cd\source\repos\sqlShop\bin\Debug\Dapper.xml
 C:\Users\cd\source\repos\sqlShop\obj\Debug\sqlShop.methods.resources
+C:\Users\cd\source\repos\sqlShop\obj\Debug\sqlShop.csprojAssemblyReference.cache

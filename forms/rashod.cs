@@ -34,7 +34,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Rashod();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from rashod order by nras");
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Rashod();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from rashod order by nras");
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace sqlShop
 
         private void rashod_VisibleChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = Services.GetTable_Rashod();
+            dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from rashod order by nras");
             listBox1.Items.Clear();
             listBox1.Items.AddRange(Services.GetArrayOfProducts());
             listBox2.Items.Clear();
@@ -107,7 +107,7 @@ namespace sqlShop
                         }
                     }
                 }
-                dataGridView1.DataSource = Services.GetTable_Rashod();
+                dataGridView1.DataSource = Services.GetTableBySqlCommand("select * from rashod order by nras");
             }
             catch (Exception ex)
             {
